@@ -11,9 +11,9 @@ export function HeroSection({
 	darken = false,
 }: Readonly<HeroSectionProps>) {
 	return (
-		<section className="relative h-[90vh] overflow-hidden rounded-b-[80px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)]">
+		<section className="relative h-[90vh]">
 			{/* Background image */}
-			<div className="absolute inset-0 z-0">
+			<div className="absolute inset-0 z-0 rounded-b-[80px] overflow-hidden shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)]">
 				<StrapiImage
 					src={image.url}
 					alt={image.alternativeText || "No alternative text provided"}

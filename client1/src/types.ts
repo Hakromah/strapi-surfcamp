@@ -43,11 +43,11 @@ export interface HeroSectionProps extends Base<"blocks.hero-section"> {
 	author?: string;
 	darken?: boolean;
 }
-
+//export type ImageField = ImageProps | ImageProps[];
 export interface InfoBlockProps extends Base<"blocks.info-block"> {
 	theme: "turquoise" | "orange";
 	reversed?: boolean;
-	heading: string;
+	headline: string;
 	content: string;
 	image: ImageProps;
 	cta?: LinkProps;
