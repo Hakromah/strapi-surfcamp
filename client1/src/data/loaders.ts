@@ -42,6 +42,7 @@ export async function getHomePage() {
 	return await fetchAPI(url.href, { method: "GET" });
 }
 
+// dynamic page by slug
 const pageBySlugQuery = (slug: string) =>
 	qs.stringify({
 		filters: {
@@ -84,5 +85,44 @@ export async function getPageBySlug(slug: string) {
 	const path = "/api/pages";
 	const url = new URL(path, BASE_URL);
 	url.search = pageBySlugQuery(slug);
+	return await fetchAPI(url.href, { method: "GET" });
+}
+
+// responsible for getting our global page query
+const globalSettingPageQuery = qs.stringify({
+	populate: {
+		header: {
+			populate: {
+				logo: {
+					populate: {
+						image: {
+							fields: ["url", "alternativeText"],
+						},
+					},
+				},
+				navigation: true,
+				cta: true,
+			},
+		},
+		footer: {
+			populate: {
+				logo: {
+					populate: {
+						image: {
+							fields: ["url", "alternativeText"],
+						},
+					},
+				},
+				navigation: true,
+				policies: true,
+				
+			},
+		},
+	},
+});
+export async function getGlobalSettings() {
+	const path = "/api/global";
+	const url = new URL(path, BASE_URL);
+	url.search = globalSettingPageQuery;
 	return await fetchAPI(url.href, { method: "GET" });
 }
