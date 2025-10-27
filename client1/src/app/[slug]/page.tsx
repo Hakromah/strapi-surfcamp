@@ -1,5 +1,5 @@
-import { getPageBySlug } from "@/data/loaders";
 import { notFound } from "next/navigation";
+import { getPageBySlug } from "@/data/loaders";
 import { BlockRenderer } from "@/components/BlockRenderer";
 
 async function loader(slug: string) {
@@ -9,11 +9,12 @@ async function loader(slug: string) {
 }
 
 interface PageProps {
-	params: Promise<{ slug: string }>;
+	params: { slug: string };
 }
 
 export default async function DynamicPageRoute({ params }: PageProps) {
-	const slug = (await params).slug;
+	const { slug } = await params; // ✅ no await needed here
 	const { blocks } = await loader(slug);
+
 	return <BlockRenderer blocks={blocks} />;
 }

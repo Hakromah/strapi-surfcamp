@@ -20,9 +20,9 @@ export function InfoBlock({
 		w-full h-full relative mt-12 overflow-hidden odd:[&_.imageWrapper]:max-h-[800px]"
 		>
 			<div
-				className={`flex flex-col md:flex-row container w-full max-w-[1920px] px-0 mx-auto ${
-					reversed ? "md:flex-row-reverse" : ""
-				} items-center gap-6 my-12`}
+				className={`flex flex-col ${
+					reversed ? "md:flex-row" : "flex-row-reverse"
+				} container w-full max-w-[1920px] px-0 mx-auto items-center gap-6 my-12`}
 			>
 				<div className="imageWrapper overflow-hidden flex-1 w-full relative">
 					<StrapiImage
@@ -33,11 +33,7 @@ export function InfoBlock({
 					/>
 				</div>
 
-				<div
-					className={`${
-						reversed ? "md:order-1" : "md:order-2"
-					} w-full md:w-1/2 flex flex-col gap-4 flex-1`}
-				>
+				<div className="w-full md:w-1/2 flex flex-col gap-4 flex-1 p-6">
 					<h2
 						className={`text-2xl font-semibold ${
 							theme === "turquoise" ? "text-teal-500" : "text-orange-500"
@@ -45,9 +41,11 @@ export function InfoBlock({
 					>
 						{headline}
 					</h2>
+
 					<div className="prose prose-lg text-gray-800">
 						<ReactMarkdown>{content}</ReactMarkdown>
 					</div>
+
 					{cta && (
 						<Link
 							href={cta.href}

@@ -34,7 +34,7 @@ export default async function RootLayout({
 }>) {
 	const { header, footer } = await loader();
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<Header data={header} />
 				{children}

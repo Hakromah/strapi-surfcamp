@@ -42,7 +42,6 @@ export async function getHomePage() {
 	return await fetchAPI(url.href, { method: "GET" });
 }
 
-// dynamic page by slug
 const pageBySlugQuery = (slug: string) =>
 	qs.stringify({
 		filters: {
@@ -75,6 +74,18 @@ const pageBySlugQuery = (slug: string) =>
 							},
 							cta: true,
 						},
+					},
+
+					"blocks.featured-articles": {
+						populate: {
+							image: {
+								fields: ["url", "alternativeText"],
+							},
+							link: true,
+						},
+					},
+					"blocks.subscribe": {
+						populate: true,
 					},
 				},
 			},
@@ -115,7 +126,6 @@ const globalSettingPageQuery = qs.stringify({
 				},
 				navigation: true,
 				policies: true,
-				
 			},
 		},
 	},

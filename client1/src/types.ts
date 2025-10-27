@@ -16,8 +16,12 @@ export interface LogoProps {
 	logoText: string;
 	image: ImageProps;
 }
-
-type ComponentType = "blocks.hero-section" | "blocks.info-block";
+// ComponentTypes
+type ComponentType =
+	| "blocks.hero-section"
+	| "blocks.info-block"
+	| "blocks.featured-articles"
+	| "blocks.subscribe";
 
 interface Base<
 	T extends ComponentType,
@@ -32,7 +36,11 @@ interface Base<
 	data?: D;
 }
 
-export type Block = HeroSectionProps | InfoBlockProps;
+export type Block =
+	| HeroSectionProps
+	| InfoBlockProps
+	| SubscribeProps
+	| FeaturedArticlesProps;
 
 export interface HeroSectionProps extends Base<"blocks.hero-section"> {
 	theme: "turquoise" | "orange";
@@ -51,4 +59,20 @@ export interface InfoBlockProps extends Base<"blocks.info-block"> {
 	content: string;
 	image: ImageProps;
 	cta?: LinkProps;
+	index?: number;
+}
+
+//Featured Article and Subscribe blogs remot
+export interface FeaturedArticlesProps extends Base<"blocks.featured-articles"> {
+	headline: string;
+	excerpt: string;
+	link: LinkProps;
+	image: ImageProps;
+}
+
+export interface SubscribeProps extends Base<"blocks.subscribe"> {
+	headline: string;
+	content: string;
+	placeholder: string;
+	buttonText: string;
 }

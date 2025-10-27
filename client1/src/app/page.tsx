@@ -25,6 +25,7 @@ export default async function HomeRoute() {
 	);
 }
 
+// import { FeaturedArticle } from "@/components/blocks/FeaturedArticle";
 // import { HeroSection } from "@/components/blocks/HeroSection";
 // import { InfoBlock } from "@/components/blocks/InfoBlock";
 // import { getHomePage } from "@/data/loaders";
@@ -39,7 +40,6 @@ export default async function HomeRoute() {
 // export default async function HomeRoute() {
 // 	const data = await loader();
 // 	const blocks = data?.blocks || [];
-
 
 // 	return (
 // 		<div>
@@ -58,4 +58,3 @@ export default async function HomeRoute() {
 // 		</div>
 // 	);
 // }
- 

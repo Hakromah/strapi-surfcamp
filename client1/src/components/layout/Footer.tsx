@@ -19,16 +19,16 @@ export function Footer({ data }: FooterProps) {
 	const { logo, navigation, policies, copy } = data;
 
 	return (
-		<footer className="w-full border-t bg-black text-white">
-			<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-6 py-12 md:flex-row md:gap-0">
+		<footer className="w-full border-t max-w-[1920px] bg-black text-white">
+			<div className="mx-auto flex w-[70%] items-center justify-between gap-8 px-6 py-12 md:flex-row md:gap-0">
 				{/* Logo + Navigation */}
-				<div className="flex gap-6 flex-row items-center justify-center md:items-start">
+				<div className="flex flex-row gap-6 items-center justify-center md:items-start">
 					<StrapiImage
 						src={logo.image.url}
 						alt={logo.image.alternativeText || "Footer logo"}
 						width={100}
 						height={100}
-						className="mb-4 w-24 h-auto object-contain"
+						className=" w-20 h-auto object-contain"
 					/>
 
 					<ul className="flex flex-wrap items-center justify-center gap-6 md:justify-start">
