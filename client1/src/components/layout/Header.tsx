@@ -25,11 +25,10 @@ export function Header({ data }: HeaderProps) {
 
 	return (
 		<header
-			className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 ${
-				headerLight
-					? "bg-orange-400 text-white border-b-amber-800"
-					: "bg-black text-white border-transparent"
-			}`}
+			className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 mb-4 h-[var(--header-height)] ${headerLight
+				? "bg-orange-400 text-white border-b-amber-800"
+				: "bg-black text-white border-transparent"
+				}`}
 		>
 			<div className="mx-auto flex max-w-[1920px] w-full items-center justify-between px-6 py-4">
 				{/* Logo */}
