@@ -22,9 +22,13 @@ export function Subscribe({
 		subscribeAction,
 		INITIAL_STATE);
 	const zodErrors = formState?.zodErrors?.email
+	const strapiErrors = formState?.strapiErrors?.message;
+
+	const errorMessage = strapiErrors || zodErrors || formState?.errorMessage;
+	const successMessage = formState?.successMessage;
 
 	const buttonStyle =
-		"inline-flex items-center justify-center rounded-lg ml-3 bg-emerald-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 h-12";
+		"inline-flex cursor-pointer items-center justify-center rounded-lg ml-3 bg-emerald-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 h-12";
 	const inputStyle = "flex-1 min-w-0 h-12 rounded-lg border border-gray-300 bg-white px-4 py-2 text-base text-gray-800 placeholder-gray-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition duration-150 ease-in-out";
 	return (
 
@@ -41,8 +45,8 @@ export function Subscribe({
 						<input
 							name="email"
 							type="text"//email
-							placeholder={zodErrors || placeholder}
-							className={inputStyle + (zodErrors ? " border-red-500 text-red-700 focus:border-red-500 focus:ring-red-500" : "")}
+							placeholder={errorMessage || successMessage || placeholder}
+							className={inputStyle + (errorMessage ? " border-red-500 focus:border-red-500 focus:ring-red-500" : "")}
 							aria-label="Email address for newsletter"
 						/>
 						<button

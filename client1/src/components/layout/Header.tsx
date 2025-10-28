@@ -23,7 +23,10 @@ export function Header({ data }: HeaderProps) {
 
 	const { logo, navigation, cta } = data;
 
+	const buttonStyle = "inline-flex cursor-pointer items-center justify-center rounded-lg ml-3 bg-emerald-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 h-12";
+
 	return (
+
 		<header
 			className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 mb-4 h-[var(--header-height)] ${headerLight
 				? "bg-orange-400 text-white border-b-amber-800"
@@ -38,7 +41,7 @@ export function Header({ data }: HeaderProps) {
 						alt={logo.image.alternativeText || "Logo"}
 						width={120}
 						height={120}
-						className="h-auto w-28 object-contain rounded-[45%]"
+						className="h-auto w-20 object-contain rounded-[50%]"
 					/>
 				</Link>
 
@@ -65,7 +68,7 @@ export function Header({ data }: HeaderProps) {
 						<Button
 							size="sm"
 							variant={headerLight ? "default" : "secondary"}
-							className="rounded-xl"
+							className={buttonStyle}
 						>
 							{cta.text}
 						</Button>

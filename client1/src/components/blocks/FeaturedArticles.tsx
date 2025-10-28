@@ -9,7 +9,7 @@ export function FeaturedArticle({
 	excerpt,
 	image,
 }: Readonly<FeaturedArticlesProps>) {
-	const buttonStyle = "inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50";
+	const buttonStyle = "inline-flex items-center cursor-pointer justify-center rounded-lg bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50";
 
 	return (
 		<article className="container mx-auto px-4 pt-[calc(var(--header-height)+2rem)] pb-16 lg:pb-24 w-full">
@@ -24,7 +24,7 @@ export function FeaturedArticle({
 						{link.text}
 					</Link>
 				</div>
-				<div className="rounded-3xl w-full overflow-hidden aspect-square lg:aspect-video h-full">
+				<div className="rounded-4xl w-full overflow-hidden aspect-square lg:aspect-video h-full">
 					<StrapiImage
 						src={image.url}
 						alt={image.alternativeText || "No alternative text provided"}

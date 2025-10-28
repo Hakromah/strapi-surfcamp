@@ -1,5 +1,6 @@
 "use server";
 import { z } from "zod";
+import { subscribeService } from "./services";
 
 const SubscribeSchema = z.object({
    email: z.email({
@@ -23,5 +24,31 @@ export async function subscribeAction(prevState: any, formData: FormData) {
          strapiErrors: null,
       }
    }
-   console.log(email, "is coming from the form data");
+   // If validation passes, call the subscribe service
+   const responseData = await subscribeService(validatedFields.data.email);
+
+   if (!responseData) {
+      return {
+         ...prevState,
+         strapiErrors: null,
+         zodErrors: null,
+         errorMessage: "An unexpected error occurred. Please try again",
+      }
+   }
+   if (responseData.error) {
+      return {
+         ...prevState,
+         strapiErrors: responseData.error,
+         zodErrors: null,
+         errorMessage: "Failed to subscribe."
+      }
+   }
+   return {
+      ...prevState,
+      zodErrors: null,
+      strapiErrors: null,
+      errorMessage: null,
+      successMessage: "Successfully subscribed!"
+   };
+
 }
