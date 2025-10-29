@@ -2,6 +2,8 @@
 import { ArticleProps } from "@/types";
 import { getContent } from "@/data/loaders";
 
+import { Search } from "@/components/Search";
+
 interface ContentListProps {
    headline: string;
    query?: string;
@@ -9,6 +11,7 @@ interface ContentListProps {
    featured?: boolean;
    component: React.ComponentType<ArticleProps & { basePath: string }>;
    headlineAlignment?: "center" | "right" | "left";
+   showSearch?: boolean;
 }
 
 async function loader(path: string, featured?: boolean) {
@@ -24,6 +27,7 @@ export async function ContentList({
    featured,
    component,
    headlineAlignment,
+   showSearch,
 }: Readonly<ContentListProps>) {
    const { articles } = await loader(path, featured);
    // Utility for text alignment class
@@ -36,6 +40,7 @@ export async function ContentList({
          <h3 className={`text-3xl font-bold mb-6 ${alignClass}`}>
             {headline || "Featured Articles"}
          </h3>
+         {showSearch && <Search />}
          {/* Tailwind Grid: The key to the layout: 1 column on small, 2 on medium, 3 on large screens */}
          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (

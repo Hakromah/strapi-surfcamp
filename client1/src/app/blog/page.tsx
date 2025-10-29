@@ -24,6 +24,7 @@ export default async function BlogRoute({ params }: PageProps) {
       headline="Checkout Our Latest Blog Posts"
       path="/api/articles"
       component={BlogCard}
+      showSearch
       headlineAlignment="center"
     />
   </div>
