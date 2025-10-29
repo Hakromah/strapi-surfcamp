@@ -15,6 +15,5 @@ interface PageProps {
 export default async function DynamicPageRoute({ params }: PageProps) {
 	const { slug } = await params; // ✅ no await needed here
 	const { blocks } = await loader(slug);
-
 	return <BlockRenderer blocks={blocks} />;
 }

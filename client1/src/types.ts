@@ -16,6 +16,21 @@ export interface LogoProps {
 	logoText: string;
 	image: ImageProps;
 }
+
+//Article props
+export interface ArticleProps {
+	id: number;
+	documentId: string;
+	title: string;
+	description: string;
+	slug: string;
+	image: ImageProps;
+	author: string
+	featured: boolean;
+	publishedAt: string;
+	createdAt: string;
+	updatedAt: string;
+}
 // ComponentTypes
 type ComponentType =
 	| "blocks.hero-section"

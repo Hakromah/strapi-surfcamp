@@ -1,8 +1,8 @@
-import { HeroSection } from "@/components/blocks/HeroSection";
-import { InfoBlock } from "@/components/blocks/InfoBlock";
+import { BlockRenderer } from "@/components/BlockRenderer";
+import { ContentList } from "@/components/ContentList";
 import { getHomePage } from "@/data/loaders";
 import { notFound } from "next/navigation";
-
+import { BlogCard } from "@/components/BlogCard";
 async function loader() {
 	const data = await getHomePage();
 	if (!data) notFound();
@@ -10,6 +10,7 @@ async function loader() {
 	console.log(data);
 	return { ...data };
 }
+
 export default async function HomeRoute() {
 	const data = await loader();
 
@@ -18,43 +19,17 @@ export default async function HomeRoute() {
 	console.dir(data, { depth: null });
 	return (
 		<div>
-			<HeroSection {...blocks[0]} />
-			<InfoBlock {...blocks[1]} />
-			<InfoBlock {...blocks[2]} />
+			<BlockRenderer blocks={blocks} />
+			<div className="container mx-auto my-20">
+				<ContentList
+					headline="Checkout Our Featured Articles"
+					path="/api/articles"
+					component={BlogCard}
+					featured
+					headlineAlignment="center"
+				/>
+			</div>
 		</div>
 	);
 }
 
-// import { FeaturedArticle } from "@/components/blocks/FeaturedArticle";
-// import { HeroSection } from "@/components/blocks/HeroSection";
-// import { InfoBlock } from "@/components/blocks/InfoBlock";
-// import { getHomePage } from "@/data/loaders";
-// import { notFound } from "next/navigation";
-
-// async function loader() {
-// 	const data = await getHomePage();
-// 	if (!data) notFound();
-// 	return data;
-// }
-
-// export default async function HomeRoute() {
-// 	const data = await loader();
-// 	const blocks = data?.blocks || [];
-
-// 	return (
-// 		<div>
-// 			{blocks.map((block, index) => {
-// 				switch (block.__component) {
-// 					case "blocks.hero-section":
-// 						return <HeroSection key={block.id} {...block} />;
-
-// 					case "blocks.info-block":
-// 						return <InfoBlock key={block.id} {...block} index={index} />;
-
-// 					default:
-// 						return null;
-// 				}
-// 			})}
-// 		</div>
-// 	);
-// }

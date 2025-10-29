@@ -23,7 +23,7 @@ export function Header({ data }: HeaderProps) {
 
 	const { logo, navigation, cta } = data;
 
-	const buttonStyle = "inline-flex cursor-pointer items-center justify-center rounded-lg ml-3 bg-emerald-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 h-12";
+	const buttonStyle = "inline-flex cursor-pointer items-center justify-center rounded-full ml-3 bg-teal-500 hover:bg-teal-600 px-6 py-3 text-base font-semibold text-white transition-colors focus:outline-none focus:ring-4 focus:ring-emerald-500/50 h-12";
 
 	return (
 
