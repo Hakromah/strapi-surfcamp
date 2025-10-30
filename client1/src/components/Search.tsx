@@ -28,11 +28,11 @@ export function Search() {
    }, 300);
 
    return (
-      <div className="mb-12 w-full max-w-[40rem] mx-auto">
+      <div className="mb-12 w-full max-w-[50rem] mx-auto">
          <input
             type="text"
             placeholder="Search"
-            className="w-full py-1 px-2 border-[1px] border-brown-300 rounded-lg text-[16px] focus:outline-none"
+            className="w-full bg-white py-1 px-2 border-[1px] border-gray-300 rounded-lg text-[16px] focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 focus:outline-none  transition duration-150 ease-in-out"
             // Call handleSearch whenever input value changes
             onChange={(e) => handleSearch(e.target.value)}
             // Initialize input with existing search query from URL

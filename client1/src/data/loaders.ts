@@ -3,6 +3,7 @@ import { getStrapiURL } from "@/utils/get-strapi-url";
 import qs from "qs";
 
 const BASE_URL = getStrapiURL();
+const BLOG_PAGE_SIZE = 3;
 const homePageQuery = qs.stringify({
 	populate: {
 		blocks: {
@@ -138,13 +139,25 @@ export async function getGlobalSettings() {
 }
 
 // responsible for getting our content list articles
-export async function getContent(path: string, featured?: boolean) {
+export async function getContent(
+	path: string,
+	featured?: boolean,
+	query?: string,
+	page?: string) {
 	const url = new URL(path, BASE_URL);
 
 	url.search = qs.stringify({
 		sort: ["createdAt:desc"],
 		filters: {
+			$or: [
+				{ title: { $containsi: query } },
+				{ description: { $containsi: query } },
+			],
 			...(featured && { featured: { $eq: featured } }),
+		},
+		pagination: {
+			pageSize: BLOG_PAGE_SIZE,
+			page: parseInt(page || "1"),
 		},
 		populate: {
 			image: {

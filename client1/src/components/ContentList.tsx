@@ -2,6 +2,7 @@
 import { ArticleProps } from "@/types";
 import { getContent } from "@/data/loaders";
 
+import { PaginationComponent } from "./PaginationComponent";
 import { Search } from "@/components/Search";
 
 interface ContentListProps {
@@ -11,13 +12,16 @@ interface ContentListProps {
    featured?: boolean;
    component: React.ComponentType<ArticleProps & { basePath: string }>;
    headlineAlignment?: "center" | "right" | "left";
-   showSearch?: boolean;
+   showSearch?: boolean;//whether to show search bar or not
+   page?: string;
+   showPagination?: boolean;//this property is to show or hide pagination component
 }
 
-async function loader(path: string, featured?: boolean) {
-   const { data, meta } = await getContent(path, featured);
+async function loader(path: string, featured?: boolean, query?: string, page?: string) {
+   const { data, meta } = await getContent(path, featured, query, page);
    return {
       articles: (data as ArticleProps[]) || [],
+      pageCount: meta.pagination.pageCount || 1,
    };
 }
 
@@ -28,8 +32,12 @@ export async function ContentList({
    component,
    headlineAlignment,
    showSearch,
+   query,
+   page,
+   showPagination,
 }: Readonly<ContentListProps>) {
-   const { articles } = await loader(path, featured);
+   const { articles, pageCount } = await loader(path, featured, query, page);
+   
    // Utility for text alignment class
    const alignClass = headlineAlignment === 'center' ? 'text-center' :
       headlineAlignment === 'right' ? 'text-right' :
@@ -47,6 +55,8 @@ export async function ContentList({
                <Component key={article.documentId} {...article} basePath={path} />
             ))}
          </div>
+         {/* Pagination Component - shown only if showPagination is true */}
+         {showPagination && <PaginationComponent pageCount={pageCount} />}
       </section>
    );
 }

@@ -12,10 +12,11 @@ async function loader(slug: string) {
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; query: string }>;
 }
 
-export default async function BlogRoute({ params }: PageProps) {
+export default async function BlogRoute({ searchParams }: PageProps) {
+  const { page, query } = await searchParams;
   const { blocks } = await loader("blog");
 
   return <div className="container mx-auto px-4 pt-[calc(var(--header-height))] pb-16 lg:pb-24 w-full">
@@ -25,6 +26,9 @@ export default async function BlogRoute({ params }: PageProps) {
       path="/api/articles"
       component={BlogCard}
       showSearch
+      query={query}
+      showPagination
+      page={page}
       headlineAlignment="center"
     />
   </div>
