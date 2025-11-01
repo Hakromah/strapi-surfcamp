@@ -5,8 +5,8 @@ import { Button } from "../ui/button";
 
 export function HeroSection({
 	heading,
-	image,
 	cta,
+	image,
 	logo,
 	darken = false,
 }: Readonly<HeroSectionProps>) {

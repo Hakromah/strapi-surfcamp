@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { StrapiImage } from "@/components/StrapiImage";
 import ReactMarkdown from "react-markdown";
-import { FeaturedArticlesProps } from "@/types";
+import { FeaturedArticleProps } from "@/types";
 
 export function FeaturedArticle({
 	headline,
 	link,
 	excerpt,
 	image,
-}: Readonly<FeaturedArticlesProps>) {
+}: Readonly<FeaturedArticleProps>) {
 	const buttonStyle = "inline-flex items-center cursor-pointer justify-center rounded-lg bg-emerald-500 px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50";
 
 	return (

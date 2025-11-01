@@ -77,7 +77,7 @@ const pageBySlugQuery = (slug: string) =>
 						},
 					},
 
-					"blocks.featured-articles": {
+					"blocks.featured-article": {
 						populate: {
 							image: {
 								fields: ["url", "alternativeText"],
@@ -163,6 +163,87 @@ export async function getContent(
 			image: {
 				fields: ["url", "alternativeText"],
 			},
+		},
+	});
+
+	return fetchAPI(url.href, { method: "GET" });
+}
+
+// responsible for getting our single content by slug
+const blogPopulate = {
+	blocks: {
+		on: {
+			"blocks.hero-section": {
+				populate: {
+					image: {
+						fields: ["url", "alternativeText"],
+					},
+					logo: {
+						populate: {
+							image: {
+								fields: ["url", "alternativeText"],
+							},
+						},
+					},
+					cta: true,
+				},
+			},
+			"blocks.info-block": {
+				populate: {
+					image: {
+						fields: ["url", "alternativeText"],
+					},
+					cta: true,
+				},
+			},
+			"blocks.featured-article": {
+				populate: {
+					image: {
+						fields: ["url", "alternativeText"],
+					},
+					link: true,
+				},
+			},
+			"blocks.subscribe": {
+				populate: true,
+			},
+			"blocks.heading": {
+				populate: true,
+			},
+			"blocks.paragraph-with-image": {
+				populate: {
+					image: {
+						fields: ["url", "alternativeText"],
+					},
+				},
+			},
+			"blocks.paragraph" : {
+				populate: true,
+			},
+			"blocks.full-image": {
+				populate: {
+					image: {
+						fields: ["url", "alternativeText"],
+					},
+				},
+			},
+		},
+	},
+};
+
+export async function getContentBySlug(slug: string, path: string) {
+	const url = new URL(path, BASE_URL);
+	url.search = qs.stringify({
+		filters: {
+			slug: {
+				$eq: slug,
+			},
+		},
+		populate: {
+			image: {
+				fields: ["url", "alternativeText"],
+			},
+			...blogPopulate,
 		},
 	});
 

@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ArticleProps } from "@/types";
 import { getContent } from "@/data/loaders";
 
 import { PaginationComponent } from "./PaginationComponent";
 import { Search } from "@/components/Search";
 
-interface ContentListProps {
+interface  ContentListProps {
    headline: string;
    query?: string;
    path: string;
@@ -37,7 +36,7 @@ export async function ContentList({
    showPagination,
 }: Readonly<ContentListProps>) {
    const { articles, pageCount } = await loader(path, featured, query, page);
-   
+
    // Utility for text alignment class
    const alignClass = headlineAlignment === 'center' ? 'text-center' :
       headlineAlignment === 'right' ? 'text-right' :

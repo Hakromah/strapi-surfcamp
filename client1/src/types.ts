@@ -35,8 +35,12 @@ export interface ArticleProps {
 type ComponentType =
 	| "blocks.hero-section"
 	| "blocks.info-block"
-	| "blocks.featured-articles"
-	| "blocks.subscribe";
+	| "blocks.featured-article"
+	| "blocks.subscribe"
+	| "blocks.heading"
+	| "blocks.paragraph-with-image"
+	| "blocks.paragraph"
+	| "blocks.full-image";
 
 interface Base<
 	T extends ComponentType,
@@ -54,19 +58,23 @@ interface Base<
 export type Block =
 	| HeroSectionProps
 	| InfoBlockProps
+	| FeaturedArticleProps
 	| SubscribeProps
-	| FeaturedArticlesProps;
+	| HeadingProps
+	| ParagraphWithImageProps
+	| ParagraphProps
+	| FullImageProps;
 
 export interface HeroSectionProps extends Base<"blocks.hero-section"> {
 	theme: "turquoise" | "orange";
 	heading: string;
 	image: ImageProps;
-	cta: LinkProps;
-	logo: LogoProps;
+	cta?: LinkProps;
+	logo?: LogoProps;
 	author?: string;
 	darken?: boolean;
 }
-//export type ImageField = ImageProps | ImageProps[];
+
 export interface InfoBlockProps extends Base<"blocks.info-block"> {
 	theme: "turquoise" | "orange";
 	reversed?: boolean;
@@ -74,11 +82,9 @@ export interface InfoBlockProps extends Base<"blocks.info-block"> {
 	content: string;
 	image: ImageProps;
 	cta?: LinkProps;
-	index?: number;
 }
 
-//Featured Article and Subscribe blogs remot
-export interface FeaturedArticlesProps extends Base<"blocks.featured-articles"> {
+export interface FeaturedArticleProps extends Base<"blocks.featured-article"> {
 	headline: string;
 	excerpt: string;
 	link: LinkProps;
@@ -91,3 +97,27 @@ export interface SubscribeProps extends Base<"blocks.subscribe"> {
 	placeholder: string;
 	buttonText: string;
 }
+
+export interface HeadingProps extends Base<"blocks.heading"> {
+	heading: string;
+	linkId?: string;
+}
+
+export interface ParagraphWithImageProps
+	extends Base<"blocks.paragraph-with-image"> {
+	content: string;
+	image: ImageProps;
+	reversed?: boolean;
+	imageLandscape?: boolean;
+}
+
+export interface ParagraphProps extends Base<"blocks.paragraph"> {
+	content: string;
+}
+
+export interface FullImageProps extends Base<"blocks.full-image"> {
+	id: number;
+	__component: "blocks.full-image";
+	image: ImageProps;
+}
+
