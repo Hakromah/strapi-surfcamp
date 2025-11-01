@@ -1,4 +1,5 @@
-import type { ArticleProps } from "@/types";
+import type { ArticleProps, Block } from "@/types";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/utils/format-date";
 import { getContentBySlug } from "@/data/loaders";
@@ -20,18 +21,34 @@ async function loader(slug: string) {
 interface ArticleOverviewProps {
    headline: string;
    description: string;
+   tableOfContent: { heading: string, linkId: string }[];
 }
 
 function ArticleOverview({
    headline,
    description,
+   tableOfContent
 }: Readonly<ArticleOverviewProps>) {
    return (
-      <div className="mx-4 flex w-[50%] mt-[1rem] mb-[6rem]">
-         <div className="w-[60%]">
+      <div className="mx-4 flex justify-between w-[80%] mt-[1rem] mb-[6rem]">
+         <div className="w-[45%]">
             <h3 className="mb-[2rem] text-[#333]">{headline}</h3>
             <p className="text-[#666] font-[2.4rem] leading-[1.5rem]">{description}</p>
          </div>
+         {tableOfContent && tableOfContent.length > 0 && (
+            <div className="w-[40%] pl-[2rem] border-l-[1px] border-l-[#ddd]">
+               <h4 className="mb-[1rem] text-[#333] font-bold">Table of Contents</h4>
+               <ul className="list-disc list-inside text-[#666]">
+                  {tableOfContent.map((item, index) => (
+                     <li key={index} className="mb-[0.5rem]">
+                        <Link href={`#${item.linkId}`} className="text-[#666] hover:underline">
+                           {index + 1}. {item.heading}
+                        </Link>
+                     </li>
+                  ))}
+               </ul>
+            </div>
+         )}
       </div>
    );
 }
@@ -41,6 +58,10 @@ export default async function SingleBlogRoute({ params }: PageProps) {
    const { title, author, publishedAt, description, image } = article;
 
    console.dir(blocks, { depth: null });
+
+   const tableOfContent = blocks?.filter(
+      (block: Block) => block.__component === "blocks.heading"
+   );
 
    return (
       <div>
@@ -54,7 +75,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
             darken={true}
          />
          <div>
-            <ArticleOverview headline={title} description={description} />
+            <ArticleOverview headline={title} description={description} tableOfContent={tableOfContent} />
             <BlockRenderer blocks={blocks} />
          </div>
       </div>

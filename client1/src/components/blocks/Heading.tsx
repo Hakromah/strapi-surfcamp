@@ -6,7 +6,7 @@ export function Heading({ heading, linkId }: Readonly<HeadingProps>) {
 		// 'mt-12' for top margin to match the spacing.
 		// 'text-gray-900' for the dark text color.
 		<h2
-			className="flex justify-center items-center mx-auto w-full max-w-[40%] mt-6 text-gray-900 font-serif font-extrabold text-4xl md:text-5xl"
+			className="mx-auto flex justify-center py-12 w-full max-w-[50%] text-gray-900 font-serif font-extrabold text-4xl md:text-5xl"
 			id={linkId}
 		>
 			{heading}
