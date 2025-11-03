@@ -1,9 +1,11 @@
 "use client";
+import { useActionState } from "react";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { Block } from "@/types";
 import { formatDate } from "@/utils/format-date";
 import { StrapiImage } from "./StrapiImage";
 import { SubmitButton } from "./SubmitButton";
+import { eventsSubscribeAction } from "@/data/actions";
 
 const INITIAL_STATE = {
    zodErrors: null,
@@ -68,8 +70,12 @@ export function EventSignupForm({
       alt: string;
    };
 }) {
-   // Note: useReducer is needed if INITIAL_STATE is used. Added import above.
-   // const [state, dispatch] = useReducer(reducerFunction, INITIAL_STATE);
+   // Note: useActionState is needed if INITIAL_STATE is used. Added import above.
+   const [formState, formAction] = useActionState(eventsSubscribeAction, INITIAL_STATE);
+
+   const zodErrors = formState?.zodErrors;
+   const strapiErrors = formState?.strapiErrors?.message;
+   const successMessage = formState?.successMessage;
 
    return (
 
@@ -89,7 +95,7 @@ export function EventSignupForm({
             )}
          </div>
 
-         <form className="signup-form__form w-[49%]">
+         <form className="signup-form__form w-[49%]" action={formAction}>
             {image && (
                <StrapiImage
                   src={image.url}
@@ -100,22 +106,52 @@ export function EventSignupForm({
                />
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-               <TextInput id="firstName" label="First Name" name="firstName" />
-               <TextInput id="lastName" label="Last Name" name="lastName" />
+               <TextInput
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  error={zodErrors?.firstName}
+                  defaultValue={formState?.formData?.firstName || ""}
+               />
+
+               <TextInput
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  error={zodErrors?.lastName}
+                  defaultValue={formState?.formData?.lastName || ""}
+               />
             </div>
 
             {/* Standard full-width fields */}
-            <TextInput id="email" label="Your e-mail address" name="email" type="email" />
-            <TextInput id="phone" label="Your telephone number" name="telephone" type="text" />
+            <TextInput
+               id="email"
+               label="Your e-mail address"
+               name="email" type="email"
+               error={zodErrors?.email}
+               defaultValue={formState?.formData?.email || ""}
+            />
+            <TextInput
+               id="phone"
+               label="Your telephone number"
+               name="telephone" type="text"
+               error={zodErrors?.telephone}
+               defaultValue={formState?.formData?.telephone || ""}
+            />
 
             {/* Hidden field */}
             <input hidden type="text" name="eventId" defaultValue={eventId} />
 
             <div className="mt-8">
                <SubmitButton
-                  text="Stay in touch!" // Changed text to match image
+                  text="Sign Up" // Changed text to match image
                   className="w-full text-center text-white font-bold py-4 px-6 rounded-lg bg-teal-500 hover:bg-teal-600 transition duration-200 shadow-md"
                />
+               {strapiErrors && (
+                  <p className="mt-4 text-center text-red-500">{strapiErrors}</p>
+               )}{successMessage && (
+                  <p className="mt-4 text-center text-green-500">{successMessage}</p>
+               )}
             </div>
          </form>
       </section>
