@@ -25,8 +25,8 @@ export function ParagraphWithImage({
       >
          {/* Text Content Area */}
          {/* 'w-full md:w-1/2' ensures a 50/50 split on medium screens and up */}
-         <div className="p-6 w-full md:w-1/2 article-paragraph">
-            <div className="text-lg text-gray-700 leading-relaxed">
+         <div className="p-6 w-full md:w-1/2">
+            <div className="text-lg text-gray-700 leading-relaxed text-justify">
                <ReactMarkdown>{content}</ReactMarkdown>
             </div>
          </div>

@@ -6,6 +6,8 @@ import { getContentBySlug } from "@/data/loaders";
 
 import { HeroSection } from "@/components/blocks/HeroSection";
 import { BlockRenderer } from "@/components/BlockRenderer";
+import { Card, type CardProps } from "@/components/Card";
+import { ContentList } from "@/components/ContentList";
 
 interface PageProps {
    params: Promise<{ slug: string }>;
@@ -38,7 +40,7 @@ function ArticleOverview({
          {tableOfContent && tableOfContent.length > 0 && (
             <div className="w-[40%] pl-[2rem] border-l-[1px] border-l-[#ddd]">
                <h4 className="mb-[1rem] text-[#333] font-bold">Table of Contents</h4>
-               <ul className="list-disc list-inside text-[#666]">
+               <ul className="list-none list-inside text-[#666]">
                   {tableOfContent.map((item, index) => (
                      <li key={index} className="mb-[0.5rem]">
                         <Link href={`#${item.linkId}`} className="text-[#666] hover:underline">
@@ -52,6 +54,9 @@ function ArticleOverview({
       </div>
    );
 }
+
+const BlogCard = (props: Readonly<CardProps>) => <Card {...props} basePath="blog" />;
+
 export default async function SingleBlogRoute({ params }: PageProps) {
    const slug = (await params).slug;
    const { article, blocks } = await loader(slug);
@@ -77,6 +82,13 @@ export default async function SingleBlogRoute({ params }: PageProps) {
          <div>
             <ArticleOverview headline={title} description={description} tableOfContent={tableOfContent} />
             <BlockRenderer blocks={blocks} />
+            <ContentList
+               headline="Checkout Our Latest Blog Posts"
+               path="/api/articles"
+               component={BlogCard}
+               featured={true}
+               headlineAlignment="center"
+            />
          </div>
       </div>
 

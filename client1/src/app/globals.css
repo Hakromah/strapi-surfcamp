@@ -17,3 +17,8 @@ body {
 		--header-height: 100px;
 	}
 }
+
+/* If you have a sticky header, you might also need this for smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}

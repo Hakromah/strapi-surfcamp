@@ -4,7 +4,7 @@ import { getContent } from "@/data/loaders";
 import { PaginationComponent } from "./PaginationComponent";
 import { Search } from "@/components/Search";
 
-interface  ContentListProps {
+interface ContentListProps {
    headline: string;
    query?: string;
    path: string;
@@ -29,7 +29,7 @@ export async function ContentList({
    path,
    featured,
    component,
-   headlineAlignment,
+   headlineAlignment = "left",
    showSearch,
    query,
    page,

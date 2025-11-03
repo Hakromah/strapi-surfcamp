@@ -31,6 +31,22 @@ export interface ArticleProps {
 	createdAt: string;
 	updatedAt: string;
 }
+// Event props
+export interface EventProps {
+	id: number;
+	documentId: string;
+	title: string;
+	description: string;
+	slug: string;
+	image: ImageProps;
+	author: string;
+	featured: boolean;
+	price: string;
+	startDate: string;
+	publishedAt: string;
+	createdAt: string;
+	updatedAt: string;
+}
 // ComponentTypes
 type ComponentType =
 	| "blocks.hero-section"
