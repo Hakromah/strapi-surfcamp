@@ -3,7 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { StrapiImage } from "../StrapiImage";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu } from "lucide-react";
 import { LogoProps, LinkProps } from "@/types";
 
@@ -81,7 +82,7 @@ export function Header({ data }: HeaderProps) {
 						<Button
 							variant="ghost"
 							size="icon"
-							className="md:hidden text-current hover:bg-transparent"
+							className="togo-btn md:hidden text-current hover:bg-transparent"
 						>
 							<Menu className="h-5 w-5" />
 						</Button>
@@ -89,22 +90,27 @@ export function Header({ data }: HeaderProps) {
 
 					{/* Mobile Drawer Content */}
 					<SheetContent side="right" className="flex flex-col gap-6 pt-16">
+						{/* 👇 Hidden accessible title to remove warning */}
+						<VisuallyHidden>
+							<SheetTitle>Mobile navigation menu</SheetTitle>
+						</VisuallyHidden>
 						{navigation.map((item) => (
-							<Link
-								key={item.id}
-								href={item.href}
-								target={item.isExternal ? "_blank" : "_self"}
-								className="text-lg font-medium"
-							>
-								{item.text}
-							</Link>
+							<SheetClose asChild key={item.id}>
+								<Link
+									href={item.href}
+									target={item.isExternal ? "_blank" : "_self"}
+									className="text-lg font-medium"
+								>
+									{item.text}
+								</Link>
+							</SheetClose>
 						))}
-						<Link
-							href={cta.href}
-							target={cta.isExternal ? "_blank" : "_self"}
-						>
-							<Button className="w-full mt-4">{cta.text}</Button>
-						</Link>
+						<SheetClose asChild>
+							<Link href={cta.href}
+								target={cta.isExternal ? "_blank" : "_self"}>
+								<Button className="w-full mt-4">{cta.text}</Button>
+							</Link>
+						</SheetClose>
 					</SheetContent>
 				</Sheet>
 			</div>

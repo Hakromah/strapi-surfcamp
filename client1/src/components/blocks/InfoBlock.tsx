@@ -14,17 +14,16 @@ export function InfoBlock({
 }: Readonly<InfoBlockProps>) {
 	return (
 		<section
-			className="even:[&_.imageWrapper]:rounded-tl-[42%]
-		even:[&_.imageWrapper]:rounded-bl-[42%] odd:[&_.imageWrapper]:rounded-tr-[42%]
-		odd:[&_.imageWrapper]:rounded-br-[42%]
-		w-full h-full relative mt-12 overflow-hidden odd:[&_.imageWrapper]:max-h-[800px]"
+			className="md:even:[&_.imageWrapper]:rounded-tl-[42%]
+		md:even:[&_.imageWrapper]:rounded-bl-[42%] md:odd:[&_.imageWrapper]:rounded-tr-[42%]
+		md:odd:[&_.imageWrapper]:rounded-br-[42%]
+		w-full h-full relative mt-12 overflow-hidden md:odd:[&_.imageWrapper]:max-h-[800px] max-md:px-[20px]"
 		>
 			<div
-				className={`flex flex-col ${
-					reversed ? "md:flex-row" : "flex-row-reverse"
-				} container w-full max-w-[1920px] px-0 mx-auto items-center gap-6 my-12`}
+				className={`md:flex flex-col grid grid-cols-1 ${reversed ? "md:flex-row" : "flex-row-reverse"
+					} container w-full max-w-[1920px] px-0 mx-auto items-center gap-6 my-12`}
 			>
-				<div className="imageWrapper overflow-hidden flex-1 w-full relative">
+				<div className="imageWrapper overflow-hidden flex-1 w-full relative max-md:rounded-[15px] max-md:aspect-video">
 					<StrapiImage
 						src={image.url}
 						alt={image.alternativeText || "No alternative text provided"}
@@ -35,9 +34,8 @@ export function InfoBlock({
 
 				<div className="w-full md:w-1/2 flex flex-col gap-4 flex-1 p-6">
 					<h2
-						className={`text-2xl font-semibold ${
-							theme === "turquoise" ? "text-teal-500" : "text-orange-500"
-						}`}
+						className={`text-2xl font-semibold ${theme === "turquoise" ? "text-teal-500" : "text-orange-500"
+							}`}
 					>
 						{headline}
 					</h2>
@@ -52,11 +50,9 @@ export function InfoBlock({
 							target={cta.isExternal ? "_blank" : "_self"}
 						>
 							<Button
-								className={`bg-${
-									theme === "turquoise" ? "teal" : "orange"
-								}-500 hover:bg-${
-									theme === "turquoise" ? "teal" : "orange"
-								}-600 text-white font-medium px-6 py-3 rounded-full`}
+								className={`bg-${theme === "turquoise" ? "teal" : "orange"
+									}-500 hover:bg-${theme === "turquoise" ? "teal" : "orange"
+									}-600 text-white font-medium px-6 py-3 rounded-full`}
 							>
 								{cta.text}
 							</Button>
