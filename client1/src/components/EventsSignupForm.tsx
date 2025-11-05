@@ -80,8 +80,8 @@ export function EventSignupForm({
    return (
 
       // The light beige background is applied here for the entire form area.
-      <section className="w-full flex p-6 md:p-10 bg-stone-50 rounded-xl">
-         <div className="mx-auto md:mb-8 w-full flex flex-col items-center md:items-start gap-4">
+      <section className="w-full flex flex-col md:flex-row pt-0 md:p-10 bg-stone-50 rounded-xl">
+         <div className="md:mx-auto mb-8 w-full flex flex-col items-center md:items-start gap-4">
             <BlockRenderer blocks={blocks} />
             <div className="ml-5 flex flex-col gap-2 w-[45%] text-center md:text-left">
                {startDate && (
@@ -97,7 +97,7 @@ export function EventSignupForm({
             </div>
          </div>
 
-         <form className="signup-form__form w-[49%]" action={formAction}>
+         <form className="signup-form__form w-full md:w-[49%] " action={formAction}>
             {image && (
                <StrapiImage
                   src={image.url}
@@ -107,7 +107,7 @@ export function EventSignupForm({
                   className="signup-form__image w-full mb-6 mx-auto rounded-2xl"
                />
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
                <TextInput
                   id="firstName"
                   label="First Name"

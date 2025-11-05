@@ -41,7 +41,7 @@ export function Subscribe({
 						<h4 className="text-2xl lg:text-3xl font-serif font-bold text-gray-900">{headline}</h4>
 						<p className="text-gray-700 text-base lg:pr-8">{content}</p>
 					</div>
-					<form className="flex w-full mt-4 lg:mt-0" action={formAction}>
+					<form className="flex flex-col gap-3 md:flex-row w-full mt-4 lg:mt-0" action={formAction}>
 						<input
 							name="email"
 							type="text"//email

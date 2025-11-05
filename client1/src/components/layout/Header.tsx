@@ -89,7 +89,11 @@ export function Header({ data }: HeaderProps) {
 					</SheetTrigger>
 
 					{/* Mobile Drawer Content */}
-					<SheetContent side="right" className="flex flex-col gap-6 pt-16">
+					<SheetContent
+						className="flex flex-col items-center justify-start w-full sm:w-[320px]
+						bg-gradient-to-br from-purple-600 via-purple-500
+						to-purple-400 text-white pt-20 pb-10 gap-8 shadow-2xl rounded-l-2xl animate-slideIn"
+					>
 						{/* 👇 Hidden accessible title to remove warning */}
 						<VisuallyHidden>
 							<SheetTitle>Mobile navigation menu</SheetTitle>
@@ -99,7 +103,8 @@ export function Header({ data }: HeaderProps) {
 								<Link
 									href={item.href}
 									target={item.isExternal ? "_blank" : "_self"}
-									className="text-lg font-medium"
+									className="text-lg font-semibold tracking-wide text-white/90 hover:text-white
+									transition-all duration-300 hover:scale-105"
 								>
 									{item.text}
 								</Link>
@@ -108,7 +113,9 @@ export function Header({ data }: HeaderProps) {
 						<SheetClose asChild>
 							<Link href={cta.href}
 								target={cta.isExternal ? "_blank" : "_self"}>
-								<Button className="w-full mt-4">{cta.text}</Button>
+								<Button className="px-6 py-3 w-[80%] bg-white text-purple-700 font-semibold
+								rounded-full shadow-lg hover:bg-purple-100 transition-all
+								duration-300 hover:scale-105">{cta.text}</Button>
 							</Link>
 						</SheetClose>
 					</SheetContent>
