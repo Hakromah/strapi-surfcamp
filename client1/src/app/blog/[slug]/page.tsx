@@ -10,7 +10,7 @@ import { Card, type CardProps } from "@/components/Card";
 import { ContentList } from "@/components/ContentList";
 
 interface PageProps {
-   params: Promise<{ slug: string }>;
+   params: { slug: string };
 }
 
 async function loader(slug: string) {

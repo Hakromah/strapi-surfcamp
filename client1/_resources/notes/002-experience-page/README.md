@@ -8,6 +8,7 @@ interface PageProps {
 
 
 export default async function DynamicPageRoute({ params }: PageProps) {
+
   const slug = (await params).slug;
 
   return (
