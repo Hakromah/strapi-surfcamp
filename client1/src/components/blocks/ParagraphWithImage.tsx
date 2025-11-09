@@ -21,18 +21,18 @@ export function ParagraphWithImage({
       // 'p-6' for padding, 'md:flex' for enabling flex on medium screens and up
       // 'gap-10' for spacing between the text and image
       <div
-         className={`flex flex-col md:flex-row items-start py-4 gap-8 ${flexDirection}`}
+         className={`flex max-md:flex-col w-full md:flex-row items-start max-md:px-[20px] py-4 gap-8 ${flexDirection}`}
       >
          {/* Text Content Area */}
          {/* 'w-full md:w-1/2' ensures a 50/50 split on medium screens and up */}
-         <div className="p-6 w-full md:w-1/2">
+         <div className="md:p-6 w-full md:w-1/2 max-md:order-2">
             <div className="text-lg text-gray-700 leading-relaxed text-justify">
                <ReactMarkdown>{content}</ReactMarkdown>
             </div>
          </div>
 
          {/* Image Container Area */}
-         <div className={`w-full md:w-1/2 max-w-[45%] relative ${imageContainerClasses}`}>
+         <div className={`w-full md:w-1/2 md:max-w-[45%] relative max-md:order-1 max-md:aspect-video ${imageContainerClasses}`}>
             <StrapiImage
                src={image.url}
                alt={image.alternativeText || "No alternative text provided"}
