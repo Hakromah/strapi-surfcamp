@@ -83,7 +83,7 @@ export function EventSignupForm({
       <section className="w-full flex flex-col md:flex-row pt-0 md:p-10 bg-stone-50 rounded-xl">
          <div className="md:mx-auto mb-8 w-full flex flex-col items-center md:items-start gap-4">
             <BlockRenderer blocks={blocks} />
-            <div className="md:pl-4 ml-5 flex flex-col gap-2 w-[45%] text-center md:text-left">
+            <div className="md:pl-5 ml-5 flex flex-col gap-2 w-[45%] text-center md:text-left">
                {startDate && (
                   <p className="text-gray-600">
                      <span className="font-bold">StartDate:</span> {formatDate(startDate)}
