@@ -17,9 +17,6 @@ export function ParagraphWithImage({
       : "w-full md:w-1/2"; // Assuming a 50/50 split for the visual shown
 
    return (
-      // Main container uses flexbox for side-by-side layout
-      // 'p-6' for padding, 'md:flex' for enabling flex on medium screens and up
-      // 'gap-10' for spacing between the text and image
       <div
          className={`flex max-md:flex-col w-full md:flex-row items-start max-md:px-[20px] py-4 gap-8 ${flexDirection}`}
       >
@@ -36,11 +33,8 @@ export function ParagraphWithImage({
             <StrapiImage
                src={image.url}
                alt={image.alternativeText || "No alternative text provided"}
-               // Use a smaller width/height for better performance and let Tailwind handle display sizing
                width={960} // Adjusted from 1920
                height={720} // Adjusted from 1080
-               // 'object-cover' ensures the image fills its container without distortion
-               // 'rounded-lg' for a slight rounded corner if desired (optional)
                className="w-full h-auto object-cover rounded-lg shadow-md"
             />
             {/* Image Caption Placeholder (optional, based on screenshot) */}
