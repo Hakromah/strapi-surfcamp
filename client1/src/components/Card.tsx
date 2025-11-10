@@ -51,7 +51,7 @@ export function Card({
                </h5>
 
                {/* Price and Date */}
-               <div className="mt-auto p-4">
+               <div className="mt-auto md:p-4">
                   {price && (
                      <p className="text-sm font-bold text-blue-600">
                         <span>Price: </span>
